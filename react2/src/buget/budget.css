@@ -1,0 +1,351 @@
+
+body{
+    background-color: white;
+}
+.header{
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 690px 760px 10px ;
+    color: white;
+    background-color: rgb(6, 54, 246);
+}
+.header2b{
+    position: fixed;
+    top: 8%;
+    z-index: 5;
+    background-color: white;
+    width: 100%;
+    color: rgb(49, 150, 88);
+    background-color: rgb(246, 248, 249);
+    border: 2px white;
+    border-style: none none solid none;
+    box-shadow:2px 2px 12px 2px rgb(201, 199, 199);
+}
+.h{
+    display: grid;
+    font-weight: bold;
+    grid-template-columns: 720px 200px 100px ;
+}
+.h3{
+    margin-left: 3%;
+    font-weight:bold;
+    color: rgb(10, 29, 241);
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    
+
+}
+.h4{
+    font-size: 15;
+    color: red;
+    padding-left: 8px;
+}
+#gt{
+    margin:1px 450px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: green;
+    
+}
+#lt{
+    margin:1px 0px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: green;
+    
+}
+#date{
+    margin:10px 0px;
+    
+}
+
+.bottom{
+    
+    position: fixed;
+    bottom: 0%;
+    padding: 10px 30px;
+    width:100% ;
+    background-color: white;
+    border: 2px rgb(240, 243, 244);
+    border-style: none none solid none;
+    box-shadow:2px 2px 12px 2px rgb(201, 199, 199);
+}
+.bt{
+    float:left;
+    margin-right: 200px;
+    line-height:0px ;
+    color: rgb(93, 90, 90);
+}
+.bt:hover, .bt:active {
+    color: rgb(6, 54, 246);
+}
+
+#icon{
+    margin-left: 200px;
+}
+.body{
+    margin-top: 29%;
+}
+
+
+#details{
+    display: grid;
+    grid-template-columns: 8% 85% 5%;
+    border-style: none none solid none;
+    border-color: green;
+    border-width: 2px;
+}
+.dt{
+    line-height: 8px;
+}
+.dt h3{
+    margin-top: 0%;
+    margin-left: 0%;
+}
+.dt p{
+    color: green;
+    font-weight: bold;
+}
+.dt span{
+    color: rgb(239, 4, 4);
+}
+.dt h3{
+    color: rgb(7, 65, 254);
+}
+.ct{
+    display: grid;
+    grid-template-columns: 8% 70% 30%;
+}
+.ct h3{
+    margin-top: 0%;
+    margin-left: 0%;
+    color: blue;
+}
+.ct button{
+    background-color: aliceblue;
+    color: rgb(135, 133, 133);
+    width: 150px;
+    border-color: blue;
+}
+.bdData{
+    display: grid;
+    grid-template-columns: 15% 75% 10%;
+    border: 2px solid rgb(181, 178, 178);
+    color: black;
+    margin:10px 10px 10px 10%;
+    width: 75%;
+    font-size:17px;
+    border-radius: 5px;
+}
+.catB{
+    display: grid;
+    grid-template-columns: 15% 59% 15%;
+    color: black;
+    margin:10px;
+    border: 2px solid rgb(181, 178, 178);
+    background-color: white;
+    padding:0px 10px 12px ;
+    font-size:18px;
+    border-radius: 5px;
+}
+
+.form{
+    z-index: 10;
+    position: fixed;
+    top:30%;
+    left:10%;
+    border: 2px solid rgb(240, 240, 240);
+    background-color: white;
+    box-shadow:2px 2px 12px 10px rgb(137, 136, 136);
+    width: 400px;
+    height: 380px;
+    margin-left: 25%;
+}
+.catfrm{
+    border: 2px solid rgb(140, 140, 140);
+    background-color: white;
+    margin: 10% 0% 8%;
+    width: 85%;
+    padding: 0%;
+    
+    
+}
+.drop{
+    display: none;
+    position: absolute;
+    right: 22%;
+    z-index: 10;
+    background-color: rgb(253, 254, 255);
+    border: 2px solid rgb(218, 213, 213);
+    box-shadow: 2px 2px 12px 5px rgb(195, 195, 197);
+    width:200px ;
+    padding:10px ;
+    line-height: 30px;
+    font-weight:600;
+}
+.dot:hover .drop{
+    display: block;
+}
+.labl{
+    border: 2px solid black;
+    background-color: green;
+    padding: 2px;
+
+}
+
+  
+  .price-box {
+    display: inline-block;
+    position: relative;
+    right:13%;
+    bottom: 20%;
+    
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px 8px;
+    font-size: 15px;
+    font-weight:600;
+    border-radius: 4px 4px 0px 4px;
+    margin-top: 0px;
+  }
+  
+  .triangle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-top: 10px solid #2e7d32;
+    transform: translateY(100%);
+  }
+  .br1{
+    margin-left: 0px;
+  }
+@media screen and (max-width:925px){
+    #gt{
+        margin:1px 110px;
+        
+    }
+    #lt{
+        margin:1px 0px;
+        
+    }
+    #date{
+        margin:10px 0px;
+        
+    }
+   
+    
+    .h{
+        font-weight: bold;
+        display: grid;
+        grid-template-columns: 330px 150px 100px ;
+    }
+    .h3{
+        margin-left: 0%;
+       
+    
+    }
+   
+    .header{
+   
+        display: grid;
+        grid-template-columns: 300px 380px 10px ;
+    }
+    .bt{
+        
+        margin-right: 85px;
+        
+        
+    }
+    #icon{
+        margin-left:50px;
+    }
+    .form{
+        left:0%
+    }
+    .catB{
+        width:600px;
+        margin-left:70px;
+    }
+    .drop{
+        right: 5%;
+    }
+    
+    .price-box {
+        display: inline-block;
+        position: relative;
+        right:13%;
+        bottom: 16%;
+        
+      }
+      input{
+       padding: 10px;
+      }
+    
+}
+
+@media screen and (max-width:600px){
+    .h3{
+       
+        display: grid;
+        grid-template-columns: 160px 500px;
+        margin-left:70px;
+        background-color: rgb(254, 254, 254);
+    
+    }
+    .h{
+        font-weight: bold;
+        display: grid;
+        
+        grid-template-columns: 330px 150px 100px ;
+    }
+    .header2b{
+        position: fixed;
+        top: 58px;
+        background-color: white;
+    }
+    .br1{
+        margin-left: 0px;
+      }
+      .catB{
+        width:95%;
+        grid-template-columns: 20% 49% 15%;
+        margin-left:10px;
+        overflow: hidden;
+    }
+    .form{
+        z-index: 10;
+        position: fixed;
+        top:29%;
+        left:5%;
+        
+        width:350px;
+        height: 350px;
+        margin-left: 0%;
+    }
+    .bdData{
+        display: grid;
+        grid-template-columns: 22% 70% 10%;
+        border: 2px solid rgb(181, 178, 178);
+        color: black;
+        margin:10px 10px 10px 10px;
+        width: 95%;
+        font-size:17px;
+        border-radius: 5px;
+    }
+     
+  .price-box {
+    display: inline-block;
+    position: relative;
+    right:13%;
+    bottom: 3%;
+    
+  }
+  
+  
+}
