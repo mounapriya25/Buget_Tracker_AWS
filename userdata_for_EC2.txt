@@ -1,0 +1,74 @@
+#!/bin/bash
+set -e
+exec > /var/log/user-data-setup.log 2>&1
+
+NODE_MAJOR=22      # matches your local Node v22.19.0
+
+# 1. System update + base tools
+dnf update -y
+dnf install -y git nginx
+
+# 2. Node.js: stop with a clear message if this AMI doesn't offer the package
+if ! dnf list available "nodejs${NODE_MAJOR}" "nodejs${NODE_MAJOR}-npm" >/dev/null 2>&1; then
+  echo "ERROR: nodejs${NODE_MAJOR} not available. Available packages:"
+  dnf list available 'nodejs*' || true
+  exit 1
+fi
+dnf install -y "nodejs${NODE_MAJOR}" "nodejs${NODE_MAJOR}-npm"
+
+# 3. PM2 keeps the backend running after you disconnect
+npm install -g pm2
+
+# 4. Swap only on small instances (< ~2 GB RAM); needed for "npm run build"
+MEM_KB=$(awk '/MemTotal/ {print $2}' /proc/meminfo)
+if [ "$MEM_KB" -lt 2000000 ] && [ ! -f /swapfile ]; then
+  dd if=/dev/zero of=/swapfile bs=1M count=1024
+  chmod 600 /swapfile
+  mkswap /swapfile
+  swapon /swapfile
+  echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
+
+# 5. App directory
+mkdir -p /var/www/budgettracker
+chown -R ec2-user:ec2-user /var/www/budgettracker
+
+# 6. Nginx: React build (build/) at /, backend at /api/
+cat > /etc/nginx/conf.d/budgettracker.conf <<'EOF'
+server {
+    listen 80 default_server;
+    server_name _;
+    client_max_body_size 10m;
+
+    root /var/www/budgettracker/frontend/build;
+    index index.html;
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+    # trailing slash strips "/api" so the backend receives /loginform etc.
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+EOF
+
+nginx -t
+systemctl enable nginx
+systemctl restart nginx
+
+# 7. Record versions
+{
+  echo "node: $(node --version)"
+  echo "npm: $(npm --version)"
+  echo "git: $(git --version)"
+  echo "nginx: $(nginx -v 2>&1)"
+  echo "pm2: $(pm2 --version)"
+  echo "Budget Tracker EC2 setup completed!"
+} >> /var/log/user-data-setup.log
