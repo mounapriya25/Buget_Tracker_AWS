@@ -1,70 +1,88 @@
-# Budget Tracker – AWS Cloud Deployment
+# Personal Budget Tracker – AWS Cloud Deployment
 
-A full-stack Budget Tracker application deployed on AWS using EC2, Application Load Balancer, Auto Scaling Groups, and Amazon CloudWatch.
+## Project Overview
 
-The project demonstrates how to deploy, scale, distribute traffic, and monitor a web application using AWS cloud infrastructure.
+A full-stack **Personal Budget Tracker** application that helps users manage their personal finances by tracking income, expenses, and transactions in one place.
 
-## Architecture
+Users can monitor their spending, organize financial records, and view their budget information through an interactive dashboard.
 
-```text
-                 Users
-                   |
-                   v
-       Application Load Balancer
-                   |
-              Target Group
-                   |
-          +--------+--------+
-          |                 |
-          v                 v
-       EC2 Instance      EC2 Instance
-          |                 |
-        Nginx             Nginx
-          |                 |
-     React + Node.js   React + Node.js
-          |                 |
-          +--------+--------+
-                   |
-                   v
-              MongoDB Atlas
+The application is deployed on **AWS** with load balancing, automatic scaling, and centralized monitoring.
 
-       CloudWatch monitors EC2 logs
-       Auto Scaling Group manages EC2 capacity
-```
+## Application Features
+
+- Track personal income and expenses.
+- Add, view, and manage financial transactions.
+- Monitor financial activities through a dashboard.
+- Store and retrieve user data using MongoDB Atlas.
+- React-based interactive user interface.
 
 ## Technology Stack
 
 - **Frontend:** React.js, HTML, CSS, JavaScript
-- **Backend:** Node.js, Express.js, PM2
+- **Backend:** Node.js, Express.js, REST APIs
 - **Database:** MongoDB Atlas
+- **Process Management:** PM2
 - **Web Server:** Nginx
-- **AWS:** EC2, VPC, IAM, Application Load Balancer, Target Groups, Auto Scaling Groups, Launch Templates, AMI, CloudWatch
-- **Version Control:** Git, GitHub
+- **Cloud Platform:** AWS
 
-## AWS Implementation
+## AWS Architecture
 
-1. Created a custom VPC with two public subnets across two Availability Zones.
-2. Launched EC2 and deployed the React frontend and Node.js backend.
-3. Configured Nginx to serve the frontend and reverse-proxy API requests.
-4. Integrated the backend with MongoDB Atlas.
-5. Configured IAM roles and CloudWatch Agent for centralized log monitoring.
+```text
+             Users
+               |
+               v
+    Application Load Balancer
+               |
+          Target Group
+               |
+       +-------+-------+
+       |               |
+       v               v
+    EC2 Instance    EC2 Instance
+       |               |
+     Nginx           Nginx
+       |               |
+   React + Node.js  React + Node.js
+       |               |
+       +-------+-------+
+               |
+               v
+          MongoDB Atlas
+
+    Auto Scaling Group
+    manages EC2 capacity
+
+    CloudWatch monitors
+    application logs
+```
+
+## AWS Services Implemented
+
+- **VPC:** Custom networking with two public subnets across two Availability Zones.
+- **EC2:** Hosts the frontend and backend application.
+- **Nginx:** Serves React files and forwards API requests.
+- **Application Load Balancer:** Distributes incoming traffic across healthy EC2 instances.
+- **Auto Scaling Group:** Automatically adjusts EC2 capacity based on CPU utilization.
+- **Launch Template & AMI:** Maintains consistent EC2 configurations.
+- **IAM:** Manages permissions for AWS resources.
+- **CloudWatch:** Collects and monitors application and server logs.
+
+## Deployment Workflow
+
+1. Created a custom VPC, subnets, and networking components.
+2. Deployed the React frontend and Node.js backend on EC2.
+3. Configured Nginx and PM2.
+4. Integrated MongoDB Atlas.
+5. Configured CloudWatch Agent for centralized logging.
 6. Created a custom AMI and Launch Template.
-7. Configured an Auto Scaling Group with CPU-based target tracking.
-8. Created an Application Load Balancer and Target Group.
-9. Verified EC2 health checks, traffic distribution, and scaling behavior.
+7. Configured an Auto Scaling Group with CPU-based scaling.
+8. Configured an Application Load Balancer and Target Group.
+9. Tested application accessibility, health checks, traffic distribution, and scaling.
 
-## Key Features
+## Key Learning Outcomes
 
-- Full-stack application deployment on AWS.
-- Load balancing across healthy EC2 instances.
-- Automatic EC2 scaling based on CPU utilization.
-- Centralized application log monitoring using CloudWatch.
-- Multi-AZ infrastructure deployment.
-
-## Learning Outcomes
-
-- AWS networking and EC2 deployment.
-- Load balancing and Auto Scaling.
+- Full-stack application development and AWS deployment.
+- AWS networking and EC2 management.
+- Load balancing and automatic scaling.
 - IAM roles and permissions.
-- CloudWatch monitoring and log management.
-- Full-stack application deployment on cloud infrastructure.
+- Centralized monitoring using Amazon CloudWatch.
